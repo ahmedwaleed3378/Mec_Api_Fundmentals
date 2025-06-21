@@ -39,15 +39,20 @@ namespace Mec10th.Controllers
 
 
 		[HttpPost]
-		public async Task<ActionResult> PostCategory(Category category)
+		public async Task<ActionResult> PostCategory(string categoryName)
 		{
-			if (category == null)
+			if (categoryName == null)
 			{
 				return BadRequest("Category cannot be null.");
 			}
-			_context.Categories.Add(category);
+			var cat = new Category()
+			{
+				Name = categoryName,
+				Products = new List<Product>()
+			};
+			_context.Categories.Add(cat);
 			await _context.SaveChangesAsync();
-			return Ok(new { message = "Category is added successfully", category = category });
+			return Ok(new { message = "Category is added successfully", category = categoryName });
 		}
 
 
