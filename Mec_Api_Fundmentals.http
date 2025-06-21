@@ -1,0 +1,6 @@
+@Mec_Api_Fundmentals_HostAddress = http://localhost:5253
+
+GET {{Mec_Api_Fundmentals_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
