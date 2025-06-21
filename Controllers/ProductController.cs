@@ -18,20 +18,27 @@ namespace Mec9th.Controllers
 			_context = context;
 		}
 
+
+		[HttpGet]
+		public async Task<ActionResult<IEnumerable<GetProductDto>>> GetProducts()
+		{
+			var products = await _context.Products.Include(p => p.Category).ToListAsync();
+			var productsDto = products.Select(entity => Mapper.ToDto(entity));
+			return Ok(new { message = "Success", data = productsDto });
+		}
+
+
+
+
+
 		[HttpPost]
-		public async Task<ActionResult> CreateProduct (PostProductDto productDto)
+		public async Task<ActionResult> CreateProduct(PostProductDto productDto)
 		{
 			if (productDto == null)
 				return BadRequest();
 
 
-			var product = new Product
-			{
-				Name = productDto.Name,
-				Price = productDto.Price,
-				Quantity = productDto.Quantity,
-				CategoryId = productDto.CategoryId,
-			};
+			var product = Mapper.PostEntity(productDto);
 			_context.Products.Add(product);
 			await _context.SaveChangesAsync();
 			return Ok("added sucessfully");

@@ -16,6 +16,8 @@ namespace Mec_Api_Fundmentals.Core
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<Category>().HasData(new Category { Id = 10, Name = "Clothing" }, new Category { Id = 11, Name = "Food" });
+			modelBuilder.Entity<Product>().HasData(new Product { Id = 10, Name = "IPhone", Price = 788.88m, Quantity = 25, CategoryId = 11 });
 			base.OnModelCreating(modelBuilder);
 		}
 
