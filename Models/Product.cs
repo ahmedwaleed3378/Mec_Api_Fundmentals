@@ -1,5 +1,6 @@
 ﻿namespace Mec_Api_Fundmentals.Models
 {
+
 	public partial class Product
 	{
 		public int Id { get; set; }

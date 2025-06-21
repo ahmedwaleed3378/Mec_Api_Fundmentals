@@ -1,4 +1,7 @@
 
+using Mec_Api_Fundmentals.Core;
+using Microsoft.EntityFrameworkCore;
+
 namespace Mec_Api_Fundmentals
 {
     public class Program
@@ -10,6 +13,9 @@ namespace Mec_Api_Fundmentals
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<EcommerceDbContext>
+                (options=>options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("DefaultConnection")));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddSwaggerGen();
 
