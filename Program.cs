@@ -1,5 +1,6 @@
 
 using Mec_Api_Fundmentals.Core;
+using Mec_Api_Fundmentals.Core.Middleware;
 using Mec_Api_Fundmentals.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,7 +31,7 @@ namespace Mec_Api_Fundmentals
 			}
 
 			app.UseHttpsRedirection();
-
+			app.UseMiddleware<ErrorHandlingMiddleware>();
 			app.UseAuthorization();
 
 
